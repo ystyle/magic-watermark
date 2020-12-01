@@ -7,15 +7,15 @@
       @click="clickMenu"
     >
       <h2 class="title">Magic Watermark</h2>
-      <a-menu-item key="encode">
-        Encode
+      <a-menu-item key="embed">
+        Embed
       </a-menu-item>
-      <a-menu-item key="decode">
-        Decode
+      <a-menu-item key="extract">
+        Extract
       </a-menu-item>
     </a-menu>
     <div class="main">
-      <a-input v-if="page === 'encode'" v-model:value="watermarkText" placeholder="Basic usage" class="input" />
+      <a-input v-if="page === 'embed'" v-model:value="watermarkText" placeholder="Basic usage" class="input" />
       <a-upload-dragger
         accept="image/*"
         class="upload"
@@ -62,7 +62,7 @@ export default {
       watermarkText: 'Magic Watermark',
       zip: null,
       uploading: false,
-      selectedKeys: ['encode']
+      selectedKeys: ['embed']
     }
   },
   component: {
@@ -71,9 +71,6 @@ export default {
   computed: {
     page: function () {
       return this.selectedKeys[0]
-    },
-    listType: function () {
-      return this.selectedKeys.includes('encode') ? 'picture-card' : 'picture'
     },
     fileCount: function () {
       return Object.keys(this.zip.files).length
@@ -90,7 +87,7 @@ export default {
       this.uploading = true
       reader.onload = async (e) => {
         const dataUrl = e.target.result
-        if (this.page === 'encode') {
+        if (this.page === 'embed') {
           const enCodeFileRes = await dw.transformImageUrlWithText(dataUrl, this.watermarkText, 1.1)
           this.zip.file(file.name, this.dataURLtoFile(enCodeFileRes))
         } else {
