@@ -13,6 +13,9 @@
       <a-menu-item key="extract">
         Extract
       </a-menu-item>
+      <a class="github" href="https://github.com/ystyle/magic-watermark" title="Github" target="_blank">
+        Github
+      </a>
     </a-menu>
     <div class="main">
       <a-input v-if="page === 'embed'" v-model:value="watermarkText" placeholder="Basic usage" class="input" />
@@ -140,12 +143,16 @@ export default {
       margin-left: 30px;
       margin-right: 30px;
     }
+    .github {
+      float: right;
+      margin-right: 10px;
+    }
   }
   .input {
     margin-bottom: 30px;
   }
   .main {
-    width: 1200px;
+    width: 80%;
     margin: 0 auto;
     padding-top: 30px;
   }
