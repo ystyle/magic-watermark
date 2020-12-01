@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.deeb744cd88fa47313e8049fe69d1262.js"
+  "/precache-manifest.72ccc7c63b44bb92f710d35f11dc6841.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "magic-watermark"});
