@@ -13,10 +13,11 @@
     "core-js": "^3.6.5",
     "dayjs": "^1.9.6",
     "file-saver": "^2.0.5",
+    "isomorphic-fetch": "^3.0.0",
     "jszip": "^3.5.0",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0",
-    "web-digital-watermarking": "^0.0.5"
+    "web-digital-watermarking": "^0.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

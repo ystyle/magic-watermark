@@ -55,6 +55,7 @@
 import { InboxOutlined } from '@ant-design/icons-vue'
 import { saveAs } from 'file-saver'
 import dw from 'web-digital-watermarking'
+import fetch from 'isomorphic-fetch'
 import JSZip from 'jszip'
 import dayjs from 'dayjs'
 
@@ -83,8 +84,10 @@ export default {
     clickMenu () {
       this.zip = new JSZip()
     },
+    async getBolbFromURL (url) {
+      return await fetch(url).then(r => r.blob())
+    },
     beforeUpload (file) {
-      console.log('xxx', file)
       const reader = new FileReader()
       reader.readAsDataURL(file)
       this.uploading = true
@@ -92,13 +95,15 @@ export default {
         const dataUrl = e.target.result
         if (this.page === 'embed') {
           const enCodeFileRes = await dw.transformImageUrlWithText(dataUrl, this.watermarkText, 1.1)
-          this.zip.file(file.name, this.dataURLtoFile(enCodeFileRes))
+          const data = await this.getBolbFromURL(enCodeFileRes)
+          this.zip.file(file.name, data)
         } else {
           const deCodeImageUrl = await dw.getTextFormImageUrl(dataUrl)
-          this.zip.file(file.name, this.dataURLtoFile(deCodeImageUrl))
+          const data = await this.getBolbFromURL(deCodeImageUrl)
+          this.zip.file(file.name, data)
         }
-        this.uploading = false
       }
+      this.uploading = false
       return false
     },
     /**
